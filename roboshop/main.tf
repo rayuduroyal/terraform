@@ -22,3 +22,4 @@ variable "components" {
 provider "aws" {
   region = "us-east-1"
 }
+
