@@ -22,7 +22,6 @@ resource "null_resource" "sample" {
 
     inline = [
       "echo Hello",
-      "echo Bye"
     ]
   }
 }
