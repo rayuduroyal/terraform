@@ -22,7 +22,6 @@ data "aws_ami" "ami" {
   owners      = ["973714476881"]
 }
 
-
 variable "components" {
   default = ["frontend", "mongodb", "catalogue", "cart", "user", "redis", "mysql", "shipping", "rabbitmq", "payment"]
 }
