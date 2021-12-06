@@ -15,7 +15,6 @@ resource "aws_ec2_tag" "tags" {
   resource_id = element(aws_spot_instance_request.cheap_worker.*.spot_instance_id, count.index)
   key         = "Name"
   value       = element(var.components, count.index)
-
 }
 
 data "aws_ami" "ami" {
