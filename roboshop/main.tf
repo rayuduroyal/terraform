@@ -18,7 +18,7 @@ resource "aws_ec2_tag" "tags" {
 
 data "aws_ami" "ami" {
   most_recent = true
-  name_regex  = "^Ubuntu*"
+  name_regex  = "^centos*"
   owners      = ["973714476881"]
 }
 
