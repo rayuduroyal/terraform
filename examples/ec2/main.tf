@@ -7,10 +7,12 @@ resource "aws_instance" "sample" {
   tags = {
     Name = element(var.name, count.index)
   }
+}
 
+resource "null_resource" "sample" {
   provisioner "remote-exec" {
     connection {
-      host     = self.public_ip
+      host     = aws_instance.sample.*.public_ip[0]
       user     = "ubuntu"
       password = "DevOps321"
     }
