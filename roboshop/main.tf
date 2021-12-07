@@ -17,9 +17,10 @@ resource "aws_ec2_tag" "tags" {
 
 data "aws_ami" "ami" {
   most_recent = true
-  name_regex  = "^cent*"
+  name_regex  = "^Cent*"
   owners      = ["973714476881"]
 }
+
 
 variable "components" {
   default = ["frontend", "mongodb", "catalogue", "cart", "user", "redis", "mysql", "shipping", "rabbitmq", "payment"]
