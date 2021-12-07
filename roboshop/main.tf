@@ -27,7 +27,7 @@ resource "null_resource" "ansible" {
       "yum install python3-pip -y",
       "pip3 install pip --upgrade",
       "pip3 install ansible",
-      "ansible-pull -u git@github.com:rayuduroyal/ansible.git roboshop-pull.yaml -e COMPONENT=${local.COMP_NAME}"
+      "ansible-pull -u git@github.com:rayuduroyal/ansible.git roboshop-pull.yaml -e COMPONENT=${local.COMP_NAME} -e ENV=dev"
 
     ]
   }
