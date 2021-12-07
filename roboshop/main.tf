@@ -11,7 +11,7 @@ resource "aws_spot_instance_request" "cheap_worker" {
 
 data "aws_ami" "ami" {
   most_recent = true
-  name_regex  = "^cent*"
+  name_regex  = "^ubuntu*"
   owners      = ["973714476881"]
 }
 
