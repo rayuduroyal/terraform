@@ -30,7 +30,7 @@ resource "null_resource" "ansible" {
   provisioner "remote_exec" {
     connection {
       host     = element(aws_spot_instance_request.cheap_worker.*.private_ip, count.index)
-      user     = "centos"
+      user     = "root"
       password = "DevOps321"
     }
     inline = [
