@@ -16,12 +16,13 @@ resource "aws_ec2_tag" "tags" {
 }
 
 resource "aws_route53_record" "records" {
-  count       = length(var.components)
-  zone_id     = "Z0641400MP3ISPG0RSOK"
-  name        = "${element(var.components, count.index)}.roboshop.internal"
-  type        = "A"
-  ttl         = "300"
-  records     = [element(aws_spot_instance_request.cheap_worker.*.private_ip, count.index)]
+  count           = length(var.components)
+  zone_id         = "Z0641400MP3ISPG0RSOK"
+  name            = "${element(var.components, count.index)}.roboshop.internal"
+  type            = "A"
+  ttl             = "300"
+  records         = [element(aws_spot_instance_request.cheap_worker.*.private_ip, count.index)]
+  allow_overwrite = true
 }
 
 resource "null_resource" "ansible" {
