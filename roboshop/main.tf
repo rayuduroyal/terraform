@@ -15,7 +15,17 @@ resource "aws_ec2_tag" "tags" {
   value       = local.COMP_NAME
 }
 
+resource "aws_route53_record" "records" {
+  count       = length(var.components)
+  zone_id     = "Z0641400MP3ISPG0RSOK"
+  name        = "${element(var.components, count.index)}.roboshop.internal"
+  type        = "A"
+  ttl         = "300"
+  records     = [element(aws_spot_instance_request.cheap_worker.*.private_ip, count.index)]
+}
+
 resource "null_resource" "ansible" {
+  depends_on  = [aws_route53_record.records]
   count       = length(var.components)
   provisioner "remote_exec" {
     connection {
@@ -28,7 +38,6 @@ resource "null_resource" "ansible" {
       "pip3 install pip --upgrade",
       "pip3 install ansible",
       "ansible-pull -u git@github.com:rayuduroyal/ansible.git roboshop-pull.yaml -e COMPONENT=${local.COMP_NAME} -e ENV=dev"
-
     ]
   }
 }
