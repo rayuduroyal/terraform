@@ -31,13 +31,13 @@ resource "null_resource" "ansible" {
   provisioner "remote_exec" {
     connection {
       host     = element(aws_spot_instance_request.cheap_worker.*.private_ip, count.index)
-      user     = "root"
+      user     = "centos"
       password = "DevOps321"
     }
     inline = [
-      "yum install python3-pip -y",
-      "pip3 install pip --upgrade",
-      "pip3 install ansible",
+      "sudo yum install python3-pip -y",
+      "sudo pip3 install pip --upgrade",
+      "sudo pip3 install ansible",
       "ansible-pull -u git@github.com:rayuduroyal/ansible.git roboshop-pull.yaml -e COMPONENT=${element(var.components, count.index)} -e ENV=dev"
     ]
   }
